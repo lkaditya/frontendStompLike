@@ -15,6 +15,7 @@ export class PostnewsComponent implements OnInit {
   form: FormGroup;
   image: String;
   imageempty: boolean;
+  token: String;
   
 
   constructor(private fb: FormBuilder, private router: Router, private newssvc: NewsService, private dataSvc: DataService) {
@@ -33,8 +34,13 @@ export class PostnewsComponent implements OnInit {
       this.image = "data:image/jpeg;base64,"+this.dataSvc.sharedData;
       this.imageempty = false;  
     }
+    this.token = this.dataSvc.token;
     
 
+  }
+
+  viewNews() {
+    this.router.navigate(['/']);
   }
 
   capture() {
@@ -42,12 +48,6 @@ export class PostnewsComponent implements OnInit {
   }
 
   shareNews() {
-    /*const news = this.fb.group({
-      image:this.image,
-      title: this.form.value.title,
-      comments: this.form.value.comments,
-      datetime: new Date()
-    });*/
     class News implements NewsUpload {
       image: Blob;
       title: string;
@@ -58,7 +58,7 @@ export class PostnewsComponent implements OnInit {
       news.title = this.form.value.title,
       news.comments = this.form.value.comments
     
-    this.newssvc.shareNews(news).then(result => {
+    this.newssvc.shareNews(news,this.token).then(result => {
       console.log(result);
     });
 

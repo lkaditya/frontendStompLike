@@ -12,19 +12,20 @@ export class NewsService {
     return this.http.get<News[]>('http://localhost:3000/api/viewNews').toPromise();
   }
 
-  shareNews(fileToUpload: NewsUpload): Promise<News> {
+  shareNews(fileToUpload: NewsUpload,token): Promise<News> {
+    let jwt = token;
+    const header = new HttpHeaders().set('Authorization', `Bearer ${jwt}`);
     let body = new FormData();
     let filename = File.name + Date.parse(new Date().toLocaleString());
     body.append('image', fileToUpload.image, filename);
     body.append('title', fileToUpload.title);
     body.append('comment', fileToUpload.comments);
   
-    return this.http.post<News>('http://localhost:3000/api/postNews',body).toPromise();
+    return this.http.post<News>('http://localhost:3000/api/postNews', body, { headers: header }).toPromise();
   }
 
   authenthicate(user: User): Promise<User> {
-    //let jwt="" for token later
-    //const header = new HttpHeaders().set('Authorization', `Bearer ${jwt}`);
+
 
     return this.http.post<User>('http://localhost:3000/api/login', user).toPromise();
   }

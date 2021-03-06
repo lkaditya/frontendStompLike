@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DataService } from '../../data.service';
 import { User } from '../../model';
 import { NewsService } from '../../news.service';
 
@@ -11,11 +12,10 @@ import { NewsService } from '../../news.service';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
-  constructor(private fb: FormBuilder, private router: Router, private newssvc: NewsService) {
+  constructor(private fb: FormBuilder, private router: Router, private newssvc: NewsService, private datasvc: DataService) {
 
   }
   user: User;
-  token: string;
   status: string;
 
   ngOnInit(): void {
@@ -37,13 +37,13 @@ export class LoginComponent implements OnInit {
 
 
     this.newssvc.authenthicate(user.value).then(result => {
-      this.token = result.token;
-      console.log("result= " + result);
+      this.datasvc.token = result.token;
       this.router.navigate(['/postpage']);
-    })
-    if (!this.token) {
-      this.status = "false";
-    }
+    }, msg => {
+        console.log("error found here= " + JSON.stringify(msg.error));
+        this.status = "false";
+    });
+    
     
   }
 

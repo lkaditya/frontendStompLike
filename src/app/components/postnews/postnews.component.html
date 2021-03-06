@@ -1,22 +1,24 @@
-<h1>Share Something Today!</h1>
-
-<img [src]="image" />
+<h2>Share Something Today!</h2>
+<button style="float:right" type="button" (click)="viewNews()">View the News!</button>
+<br />
+<br />
+<img class="imageclass" [src]="image" />
 
 <div class="row mt-2">
-  <div class="col">
+  <div class="col formclass text-center">
     <form [formGroup]="form" (ngSubmit)="shareNews()">
       <div class="form-group">
         <label for="title" class="form-label">Title:</label>
-        <input type="text" id="title" class="form-control" formControlName="title" />
+        <input type="text" id="title" class="form-control" formControlName="title" placeholder="title" />
       </div>
       <div class="form-group">
         <label for="comments" class="form-label">Comments:</label>
-        <input type="text" id="comments" class="form-control" formControlName="comments" />
+        <textarea id="comments" class="form-control" formControlName="comments" placeholder="Your thoughts"></textarea>
       </div>
 
-      <button type="submit" [disabled]="form.invalid||imageempty">Share</button>
-      <button type="reset" (click)="reset()">Clear</button>
-      <button type="button" (click)="capture()">Capture</button>
+      <button class="float-left btn btn-primary" type="submit" [disabled]="form.invalid||imageempty">Share</button>
+      <button class="btn btn-warning" type="reset" (click)="reset()">Clear</button>
+      <button class="float-right btn btn-danger" type="button" (click)="capture()">Capture</button>
 
     </form>
   </div>

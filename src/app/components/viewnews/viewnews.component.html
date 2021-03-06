@@ -1,0 +1,9 @@
+<button type="button" (click)="gotoLogin()">Post your news!</button>
+
+<div *ngFor="let n of news" class="align-items-center comp">
+  <img [src]="n.imageurl">
+  <h2>{{n.title}}</h2>
+  <p>{{n.comments}}</p>
+
+
+</div>

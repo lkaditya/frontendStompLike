@@ -1,0 +1,12 @@
+<p>capturenews works!</p>
+<webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"></webcam>
+<div class="snapshot" *ngIf="webcamImage">
+  <h2>Nice one!</h2>
+  <img [src]="webcamImage.imageAsDataUrl" />
+</div>
+<div>
+  <button type="button" (click)="back()">Back</button>
+  <button type="button" (click)="takePicture()">Capture</button>
+  <button type="button" (click)="switch()">Switch</button>
+</div>
+

@@ -2,14 +2,17 @@ import { HttpClient, HttpHeaders } from "@angular/common/http"
 import { Injectable } from "@angular/core"
 import { News, NewsUpload, User } from './model'
 
-
+let mainurl = "https://assignment-stomp.herokuapp.com/";
+//let mainurl = "localhost:3000/";
 @Injectable()
 export class NewsService {
+ 
   constructor(private http: HttpClient) {
   };
+ 
 
   getNews(): Promise<News[]> {
-    return this.http.get<News[]>('http://localhost:3000/api/viewNews').toPromise();
+    return this.http.get<News[]>(mainurl+"api/viewNews").toPromise();
   }
 
   shareNews(fileToUpload: NewsUpload,token): Promise<News> {
@@ -21,13 +24,13 @@ export class NewsService {
     body.append('title', fileToUpload.title);
     body.append('comment', fileToUpload.comments);
   
-    return this.http.post<News>('http://localhost:3000/api/postNews', body, { headers: header }).toPromise();
+    return this.http.post<News>(mainurl+'api/postNews', body, { headers: header }).toPromise();
   }
 
   authenthicate(user: User): Promise<User> {
 
 
-    return this.http.post<User>('http://localhost:3000/api/login', user).toPromise();
+    return this.http.post<User>(mainurl+'api/login', user).toPromise();
   }
 
 

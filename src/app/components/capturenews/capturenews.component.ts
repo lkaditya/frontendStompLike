@@ -20,12 +20,24 @@ export class CapturenewsComponent implements OnInit {
   public allowCameraSwitch = true;
 
   private trigger: Subject<void> = new Subject<void>();
+  private nextWebcam: Subject<boolean | string> = new Subject<boolean | string>();
+
+  public deviceId: string;
 
   ngOnInit(): void {
   }
 
   public get triggerObservable(): Observable<void> {
     return this.trigger.asObservable();
+  }
+
+  public get nextWebcamObservable(): Observable<boolean | string> {
+    return this.nextWebcam.asObservable();
+  }
+
+  public cameraWasSwitched(deviceId: string): void {
+    console.log('active device: ' + deviceId);
+    this.deviceId = deviceId;
   }
 
   public handleImage(webcamImage: WebcamImage): void {
@@ -44,7 +56,7 @@ export class CapturenewsComponent implements OnInit {
   }
 
   switch() {
-        //not done
+    //not done
     this.showWebcam = !this.showWebcam;
   }
 

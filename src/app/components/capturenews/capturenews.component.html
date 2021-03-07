@@ -1,10 +1,12 @@
 <div class="text-center">
-  <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"></webcam>
+  <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam" [allowCameraSwitch]="allowCameraSwitch"
+          [switchCamera]="nextWebcamObservable" (cameraSwitched)="cameraWasSwitched($event)"></webcam>
+  <h2 *ngIf="!showWebcam" style="color:blue">Camera is now turned off</h2>
 </div>
 
-<div class="text-center">
+<div class="text-center formclass">
   <button class="btn btn-dark float-left" type="button" (click)="back()">Back</button>
-  <button class="btn btn-danger" type="button" (click)="takePicture()">Capture</button>
+  <button class="btn btn-danger" type="button" (click)="takePicture()" [disabled]="!showWebcam">Capture</button>
   <button class="btn btn-info float-right" type="button" (click)="switch()">Switch</button>
 </div>
 

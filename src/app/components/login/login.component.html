@@ -4,16 +4,18 @@
     <form [formGroup]="form" (ngSubmit)="processLogin()">
       <div class="form-group ">
         <label for="username" class="form-label ">Username:</label>
-        <input type="text" placeholder="username" id="username" class="form-control" formControlName="username" />
+        <input type="text" placeholder="username" id="username" class="form-control" required formControlName="username"/>
+        <p *ngIf="form.get('username').hasError('required')&&form.get('username').dirty" style="color:red">username cannot be empty!</p>
       </div>
       <div class="form-group">
         <label for="password" class="form-label">Password:</label>
-        <input type="password" placeholder="password" id="password" class="form-control" formControlName="password" />
+        <input type="password" placeholder="password" id="password" class="form-control" required formControlName="password" />
+        <p *ngIf="form.get('password').hasError('required')&&form.get('password').dirty" style="color:red">password cannot be empty!</p>
       </div>
 
-      <button class="btn btn-success float-right" type="submit">Login</button>
+      <button class="btn btn-success float-right" [disabled]="form.invalid" type="submit">Login</button>
     </form>
   </div>
 </div>
 
-<h2 *ngIf="status=='false'">Login unsuccessful, please check the username/password</h2>
+<p style="color:red" *ngIf="status=='false'">Login unsuccessful, please check the username and/or password</p>

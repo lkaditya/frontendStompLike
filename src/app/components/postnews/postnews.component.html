@@ -1,5 +1,6 @@
 <h2>Share Something Today!</h2>
-<button style="float:right" type="button" (click)="viewNews()">View the News!</button>
+<button style="    float: right ;margin-right: 40px;
+" type="button" (click)="viewNews()">View the News!</button>
 <br />
 <br />
 <img class="imageclass" [src]="image" />
@@ -8,11 +9,11 @@
   <div class="col formclass text-center">
     <form [formGroup]="form" (ngSubmit)="shareNews()">
       <div class="form-group">
-        <label for="title" class="form-label">Title:</label>
+        <label for="title" class="form-label float-left"><b>Title:</b></label>
         <input type="text" id="title" class="form-control" formControlName="title" placeholder="title" />
       </div>
       <div class="form-group">
-        <label for="comments" class="form-label">Comments:</label>
+        <label for="comments" class="form-label float-left"><b>Comments:</b></label>
         <textarea id="comments" class="form-control" formControlName="comments" placeholder="Your thoughts"></textarea>
       </div>
 

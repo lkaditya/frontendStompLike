@@ -10,10 +10,11 @@
       <img class="imageclass" [src]="n.imageurl">
       <h2 align="center">{{n.title}}</h2>
       <p align="center">{{n.comments}}</p>
+      <p align="right">{{n.datetime}}</p>
 
 
     </div>
-      <h3 *ngIf="news.length==0"> There is no news available</h3>
+      <h3 align="center" *ngIf="news.length==0"> There is no news available</h3>
 
   </div>
 

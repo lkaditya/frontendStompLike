@@ -1,7 +1,8 @@
 export interface News {
   imageurl: String,
   title: String,
-  comments: String
+  comments: String,
+  datetime:Date
 }
 export interface NewsUpload {
   image: Blob,

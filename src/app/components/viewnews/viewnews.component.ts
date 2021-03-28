@@ -9,15 +9,18 @@ import { NewsService } from '../../news.service';
   styleUrls: ['./viewnews.component.css']
 })
 export class ViewnewsComponent implements OnInit {
-
+  //declare the class variable to be used in the frontend
   news: News[] = [];
+  //inject the service singleton
   constructor(private newsSvc: NewsService, private router:Router) { }
 
+  //functionality of the button to go to login
   gotoLogin() {
     this.router.navigate(['/login']);
 
   };
 
+  //initial page for showing the news from db through service
   ngOnInit(): void {
     this.newsSvc.getNews().then(result => {
       this.news = result;

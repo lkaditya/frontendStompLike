@@ -38,11 +38,12 @@ export class PostnewsComponent implements OnInit {
     
 
   }
-
+  //navigate back to main page
   viewNews() {
     this.router.navigate(['/']);
   }
 
+ //navigate back to capture page
   capture() {
     this.router.navigate(['/capturepage']);
   }
@@ -71,7 +72,7 @@ export class PostnewsComponent implements OnInit {
   }
 
   reset() {
-    this.image = this.image = "assets/placeholder.jpg";
+    this.image = "assets/placeholder.jpg";
     this.imageempty = true;
   }
 

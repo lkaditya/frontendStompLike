@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core"
 import { News, NewsUpload, User } from './model'
 
 let mainurl = "https://assignment-stomp.herokuapp.com/";
-//let mainurl = "localhost:3000/";
+//let mainurl = "http://localhost:3000/";
 @Injectable()
 export class NewsService {
  
@@ -18,6 +18,7 @@ export class NewsService {
   shareNews(fileToUpload: NewsUpload,token): Promise<News> {
     let jwt = token;
     const header = new HttpHeaders().set('Authorization', `Bearer ${jwt}`);
+    //form data to submit multipart including image
     let body = new FormData();
     let filename = File.name + Date.parse(new Date().toLocaleString());
     body.append('image', fileToUpload.image, filename);

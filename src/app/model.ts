@@ -2,12 +2,14 @@ export interface News {
   imageurl: String,
   title: String,
   comments: String,
-  datetime:Date
+  datetime: Date,
+  poster:String
 }
 export interface NewsUpload {
   image: Blob,
   title: string,
-  comments: string
+  comments: string,
+  poster:string
 }
 export interface User {
   username: string,

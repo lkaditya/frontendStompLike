@@ -16,6 +16,7 @@ export class PostnewsComponent implements OnInit {
   image: String;
   imageempty: boolean;
   token: String;
+  poster: string;
   
 
   constructor(private fb: FormBuilder, private router: Router, private newssvc: NewsService, private dataSvc: DataService) {
@@ -35,7 +36,7 @@ export class PostnewsComponent implements OnInit {
       this.imageempty = false;  
     }
     this.token = this.dataSvc.token;
-    
+    this.poster = this.dataSvc.username;
 
   }
   //navigate back to main page
@@ -52,12 +53,15 @@ export class PostnewsComponent implements OnInit {
     class News implements NewsUpload {
       image: Blob;
       title: string;
-      comments: string
+      comments: string;
+      poster:string
     }
     const news = new News();
     news.image = this.dataURItoBlob(this.image),
       news.title = this.form.value.title,
-      news.comments = this.form.value.comments
+      news.comments = this.form.value.comments,
+      news.poster = this.poster;
+
     
     this.newssvc.shareNews(news,this.token).then(result => {
       console.log(result);

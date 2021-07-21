@@ -10,7 +10,8 @@
       <img class="imageclass" [src]="n.imageurl">
       <h2 align="center">{{n.title}}</h2>
       <p align="center">{{n.comments}}</p>
-      <p align="right">{{n.datetime}}</p>
+      <i><b>posted on:</b> {{getFormattedDate(n.datetime)}}</i><br />
+      <i *ngIf="n.poster!=null" align="left"><b>posted by:</b> {{n.poster}}</i>
 
 
     </div>

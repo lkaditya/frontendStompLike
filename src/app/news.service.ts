@@ -24,6 +24,7 @@ export class NewsService {
     body.append('image', fileToUpload.image, filename);
     body.append('title', fileToUpload.title);
     body.append('comment', fileToUpload.comments);
+    body.append('poster', fileToUpload.poster);
   
     return this.http.post<News>(mainurl+'api/postNews', body, { headers: header }).toPromise();
   }

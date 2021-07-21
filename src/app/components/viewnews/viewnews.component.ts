@@ -20,6 +20,11 @@ export class ViewnewsComponent implements OnInit {
 
   };
 
+  getFormattedDate(x) {
+    var date = new Date(x);
+    return date;
+  };
+
   //initial page for showing the news from db through service
   ngOnInit(): void {
     this.newsSvc.getNews().then(result => {

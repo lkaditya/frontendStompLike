@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
     this.newssvc.authenthicate(user.value).then(result => {
       //pass the token to postnews later via dataservice
       this.datasvc.token = result.token;
+      this.datasvc.username = result.username;
       //go to the postpage 
       this.router.navigate(['/postpage']);
     }, msg => {
